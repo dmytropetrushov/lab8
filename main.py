@@ -35,13 +35,15 @@ for i, synset in enumerate(verb_synsets):
         print("   No examples available.")
 
 # Task 3
-print('\n\n==Print names, definitions, and examples of each synset for the \'dish\' noun==')
+print('== Synsets for the noun \'dish\' ==\n')
 noun_synsets = wn.synsets('dish', pos=wn.NOUN)
 
 # Print names, definitions, and examples of each synset
 for synset in noun_synsets:
     print(f"Name: {synset.name()}")
     print(f"Definition: {synset.definition()}")
+
+    # Print examples, if any
     examples = synset.examples()
     if examples:
         print("Examples:")
@@ -49,7 +51,6 @@ for synset in noun_synsets:
             print(f"- {example}")
     else:
         print("No examples found.")
-    print()
 
 # Task 4
 print('\n\n==Print names, definitions, and examples of each synset for the \'dish\' verb==')
@@ -70,8 +71,9 @@ for synset in verb_synsets:
 
 # Task 5
 print('\n\n==Get the lemma and the given lemma name of any synset of the word "dish"==')
+
 synsets = wn.synsets('dish')
-synset = synsets[0]  # Choose any synset you want here
+synset = synsets[0]
 
 lemma = synset.lemmas()[0]
 lemma_name = lemma.name()
@@ -84,33 +86,36 @@ print("Synset definition:", synset.definition())
 print("\n==Get all lower and higher concepts in the WordNet generic hierarchy of the first synset of the noun 'work'. "
       "Get the root hypernym of this concept. ==")
 
-# get the first synset for the noun "work"
+# Get the first synset for the noun "work"
 work_synset = wn.synset('work.n.01')
 
-# get all the hyponyms (lower concepts) of the work synset
+# Get all the hyponyms (lower concepts) of the work synset
 hyponyms = work_synset.hyponyms()
 
-print("Lower concepts of 'work.n.01':")
+print("\nLower concepts of 'work.n.01':")
 for hyponym in hyponyms:
-    print(f"{hyponym.name()} - {hyponym.definition()}")
+    print(f"- Name: {hyponym.name()}")
+    print(f"  Definition: {hyponym.definition()}")
 
-# get all the hypernyms (higher concepts) of the work synset
+# Get all the hypernyms (higher concepts) of the work synset
 hypernyms = work_synset.hypernyms()
 
 print("\nHigher concepts of 'work.n.01':")
 for hypernym in hypernyms:
-    print(f"{hypernym.name()} - {hypernym.definition()}")
+    print(f"- Name: {hypernym.name()}")
+    print(f"  Definition: {hypernym.definition()}")
 
-# get the root hypernym of the work synset
+# Get the root hypernym of the work synset
 root_hypernym = work_synset.root_hypernyms()
 
 print("\nRoot hypernym of 'work.n.01':")
-print(f"{root_hypernym[0].name()} - {root_hypernym[0].definition()}")
+print(f"- Name: {root_hypernym[0].name()}")
+print(f"  Definition: {root_hypernym[0].definition()}")
 
 # Task 7
 print("\n==Use WordNet to find out what substances 'wood is made of (use the first lemma of the noun) and what "
-      "substances"
-      "it is part of==")
+      "substances it is part of==")
+
 # Get the first noun synset for "wood"
 wood_synset = wn.synsets('wood', pos=wn.NOUN)[0]
 
@@ -118,13 +123,13 @@ wood_synset = wn.synsets('wood', pos=wn.NOUN)[0]
 wood_hyponyms = wood_synset.hyponyms()
 print("\nWood Hyponyms:")
 for hyponym in wood_hyponyms:
-    print(hyponym.name().split(".")[0])
+    print(" - " + hyponym.name().split(".")[0])
 
 # Get the substance meronyms for "wood"
 wood_substance_meronyms = wood_synset.substance_meronyms()
 print("\nWood Substance Meronyms:")
 for meronym in wood_substance_meronyms:
-    print(meronym.name().split(".")[0])
+    print(" - " + meronym.name().split(".")[0])
 
 # Task 8
 print("\n==Find an antonym for 'horizontal'==")
